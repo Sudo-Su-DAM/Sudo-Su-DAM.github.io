@@ -1,11 +1,882 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sudo su | Equipo de organización</title>
+  <meta name="description" content="sudo su - Equipo de organización y coordinación de eventos, proyectos y equipos." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #05070d;
+      --bg-alt: #0b1020;
+      --accent: #34d399;
+      --accent-soft: rgba(52,211,153,0.12);
+      --text: #f9fafb;
+      --text-soft: #9ca3af;
+      --card: #111827;
+      --border-soft: rgba(156,163,175,0.2);
+      --danger: #f97373;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 50%, #020617 100%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 32px 16px;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 1100px;
+      background: linear-gradient(145deg, rgba(15,23,42,0.96), rgba(2,6,23,0.98));
+      border-radius: 24px;
+      border: 1px solid rgba(148,163,184,0.25);
+      box-shadow:
+        0 18px 45px rgba(0,0,0,0.65),
+        0 0 0 1px rgba(15,23,42,0.8);
+      overflow: hidden;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .page::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(56,189,248,0.18), transparent 55%),
+        radial-gradient(circle at 90% 0%, rgba(52,211,153,0.16), transparent 55%);
+      opacity: 0.9;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    header {
+      padding: 20px 32px 8px;
+      border-bottom: 1px solid rgba(31,41,55,0.9);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo {
+      width: 38px;
+      height: 38px;
+      border-radius: 14px;
+      background: radial-gradient(circle at 30% 0%, #6ee7b7, #22c55e 45%, #16a34a 80%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 18px;
+      color: #022c22;
+      box-shadow:
+        0 0 0 2px rgba(15,23,42,0.9),
+        0 14px 25px rgba(34,197,94,0.4);
+    }
+
+    .brand-text h1 {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: lowercase;
+    }
+
+    .brand-text span {
+      display: block;
+      font-size: 12px;
+      color: var(--text-soft);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+    }
+
+    nav a {
+      padding: 6px 10px;
+      border-radius: 999px;
+      text-decoration: none;
+      color: var(--text-soft);
+      transition: 0.2s ease;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    nav a:hover {
+      border-color: rgba(148,163,184,0.6);
+      color: var(--text);
+      background: rgba(15,23,42,0.8);
+    }
+
+    nav a.primary {
+      background: var(--accent-soft);
+      border-color: rgba(52,211,153,0.7);
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    main {
+      padding: 24px 24px 28px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 24px;
+    }
+
+    /* HERO */
+
+    .hero {
+      padding: 18px 18px 16px;
+      border-radius: 20px;
+      background: radial-gradient(circle at top left, rgba(52,211,153,0.2), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(56,189,248,0.16), transparent 55%),
+                  rgba(15,23,42,0.9);
+      border: 1px solid rgba(55,65,81,0.9);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(148,163,184,0.7);
+      color: var(--text-soft);
+      margin-bottom: 10px;
+    }
+
+    .hero-badge span.dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34,197,94,0.25);
+    }
+
+    .hero h2 {
+      font-size: 30px;
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+
+    .hero h2 span.highlight {
+      background: linear-gradient(120deg, #6ee7b7, #22c55e, #0ea5e9);
+      -webkit-background-clip: text;
+      color: transparent;
+      display: inline-block;
+    }
+
+    .hero p.sub {
+      font-size: 14px;
+      color: var(--text-soft);
+      margin-bottom: 14px;
+      max-width: 90%;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .hero-tags span {
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.45);
+      color: var(--text-soft);
+      background: rgba(15,23,42,0.85);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      font-size: 13px;
+      padding: 7px 13px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      background: transparent;
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      transition: 0.16s ease;
+    }
+
+    .btn-primary {
+      background: #22c55e;
+      border-color: #4ade80;
+      color: #052e16;
+      font-weight: 600;
+      box-shadow:
+        0 12px 22px rgba(34,197,94,0.4),
+        0 0 0 1px rgba(5,46,22,0.8);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow:
+        0 18px 32px rgba(34,197,94,0.55),
+        0 0 0 1px rgba(5,46,22,0.9);
+    }
+
+    .btn-ghost {
+      border-color: rgba(148,163,184,0.8);
+      color: var(--text-soft);
+      background: rgba(15,23,42,0.8);
+    }
+
+    .btn-ghost:hover {
+      border-color: rgba(209,213,219,1);
+      color: var(--text);
+      background: rgba(15,23,42,0.95);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+
+    .hero-meta div {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-meta strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* RIGHT COLUMN */
+
+    .side-column {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--bg-alt);
+      border-radius: 18px;
+      border: 1px solid var(--border-soft);
+      padding: 14px 14px 12px;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .card-header h3 {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .card-header span {
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+
+    .metrics {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      font-size: 11px;
+    }
+
+    .metric {
+      padding: 7px 9px;
+      border-radius: 12px;
+      border: 1px solid rgba(55,65,81,0.9);
+      background: rgba(15,23,42,0.9);
+      min-width: 98px;
+    }
+
+    .metric-label {
+      color: var(--text-soft);
+      margin-bottom: 3px;
+    }
+
+    .metric-value {
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .metric-tag {
+      font-size: 10px;
+      color: var(--accent);
+      margin-top: 2px;
+    }
+
+    .team {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .member {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 8px;
+      border-radius: 12px;
+      border: 1px solid rgba(31,41,55,0.9);
+      background: rgba(15,23,42,0.9);
+    }
+
+    .member-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0%, #38bdf8, #6366f1 50%, #0f172a 80%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .member-info {
+      flex: 1;
+    }
+
+    .member-info strong {
+      font-size: 13px;
+    }
+
+    .member-info span {
+      display: block;
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+
+    .member-tag {
+      font-size: 10px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.7);
+      color: var(--text-soft);
+    }
+
+    /* BOTTOM SECTIONS */
+
+    .bottom {
+      padding: 0 24px 22px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 20px;
+    }
+
+    .services, .contact {
+      background: rgba(15,23,42,0.95);
+      border-radius: 18px;
+      border: 1px solid rgba(31,41,55,1);
+      padding: 14px 16px 14px;
+    }
+
+    .section-title {
+      font-size: 14px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .section-title span {
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .chip {
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      border: 1px dashed rgba(75,85,99,0.9);
+      color: var(--text-soft);
+    }
+
+    .services-list {
+      list-style: none;
+      font-size: 12px;
+      display: grid;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .services-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+    }
+
+    .services-list li::before {
+      content: "▶";
+      font-size: 9px;
+      margin-top: 2px;
+      opacity: 0.8;
+    }
+
+    .services-note {
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+
+    /* CONTACT FORM */
+
+    form {
+      display: grid;
+      gap: 8px;
+      font-size: 12px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 7px 9px;
+      border-radius: 10px;
+      border: 1px solid rgba(55,65,81,0.9);
+      background: rgba(15,23,42,0.9);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 12px;
+      outline: none;
+      transition: 0.14s ease;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(16,185,129,0.7);
+    }
+
+    textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .form-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 2px;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .form-footer small {
+      font-size: 10px;
+      color: var(--text-soft);
+    }
+
+    .btn-submit {
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      background: linear-gradient(120deg, #22c55e, #0ea5e9);
+      color: #022c22;
+      box-shadow: 0 10px 26px rgba(34,197,94,0.5);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 30px rgba(34,197,94,0.6);
+    }
+
+    .status {
+      font-size: 11px;
+      margin-top: 4px;
+      min-height: 16px;
+    }
+
+    .status.ok {
+      color: var(--accent);
+    }
+
+    .status.error {
+      color: var(--danger);
+    }
+
+    footer {
+      padding: 0 24px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--text-soft);
+      border-top: 1px solid rgba(15,23,42,0.95);
+      padding-top: 10px;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 880px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+      .hero p.sub {
+        max-width: 100%;
+      }
+      .bottom {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav {
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+      .page {
+        border-radius: 18px;
+        padding-top: 4px;
+      }
+      body {
+        padding: 12px 8px;
+      }
+    }
+  </style>
 </head>
 <body>
-    Test de Sergio
+  <div class="page">
+    <header>
+      <div class="brand">
+        <div class="logo">{ }</div>
+        <div class="brand-text">
+          <h1>sudo su</h1>
+          <span>Equipo de organización & coordinación</span>
+        </div>
+      </div>
+      <nav>
+        <a href="#servicios">Servicios</a>
+        <a href="#equipo">Equipo</a>
+        <a href="#contacto" class="primary">Contactar</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-badge">
+          <span class="dot"></span>
+          Equipo operativo · Resolvemos caos con orden
+        </div>
+        <h2>
+          Organización <span class="highlight">precisa</span> para equipos que no pueden fallar.
+        </h2>
+        <p class="sub">
+          En <strong>sudo su</strong> planificamos, coordinamos y ejecutamos proyectos, eventos y operaciones para que tu equipo pueda centrarse en lo importante.
+        </p>
+
+        <div class="hero-tags">
+          <span>#gestión_de_proyectos</span>
+          <span>#eventos</span>
+          <span>#operaciones</span>
+          <span>#comunicación</span>
+        </div>
+
+        <div class="hero-actions">
+          <a href="#contacto" class="btn btn-primary">
+            Reservar una reunión
+          </a>
+          <a href="#servicios" class="btn btn-ghost">
+            Ver qué podemos hacer
+          </a>
+        </div>
+
+        <div class="hero-meta">
+          <div>
+            <strong>+30</strong> proyectos gestionados
+          </div>
+          <div>
+            <strong>24/7</strong> soporte en lanzamientos clave
+          </div>
+          <div>
+            SLA de <strong>respuesta &lt; 2h</strong>
+          </div>
+        </div>
+      </section>
+
+      <!-- SIDE COLUMN -->
+      <aside class="side-column">
+        <section class="card">
+          <div class="card-header">
+            <h3>Instantánea del equipo</h3>
+            <span>sudo su · ops</span>
+          </div>
+          <div class="metrics">
+            <div class="metric">
+              <div class="metric-label">Tiempo medio de respuesta</div>
+              <div class="metric-value">1h 32m</div>
+              <div class="metric-tag">soporte operativo</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Proyectos activos</div>
+              <div class="metric-value">7</div>
+              <div class="metric-tag">multidisciplinar</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Satisfacción</div>
+              <div class="metric-value">4.9/5</div>
+              <div class="metric-tag">feedback del equipo</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card" id="equipo">
+          <div class="card-header">
+            <h3>Núcleo del equipo</h3>
+            <span>personas, no solo procesos</span>
+          </div>
+          <div class="team">
+            <div class="member">
+              <div class="member-avatar">LC</div>
+              <div class="member-info">
+                <strong>Líder de coordinación</strong>
+                <span>Visión global y priorización.</span>
+              </div>
+              <span class="member-tag">coord general</span>
+            </div>
+
+            <div class="member">
+              <div class="member-avatar">LO</div>
+              <div class="member-info">
+                <strong>Lead de operaciones</strong>
+                <span>Logística, tiempos y recursos.</span>
+              </div>
+              <span class="member-tag">operaciones</span>
+            </div>
+
+            <div class="member">
+              <div class="member-avatar">CC</div>
+              <div class="member-info">
+                <strong>Comms & stakeholders</strong>
+                <span>Comunicación clara y seguimiento.</span>
+              </div>
+              <span class="member-tag">comunicación</span>
+            </div>
+          </div>
+        </section>
+      </aside>
+    </main>
+
+    <!-- BOTTOM -->
+    <section class="bottom">
+      <section class="services" id="servicios">
+        <div class="section-title">
+          <h3>Qué hace sudo su por tu equipo</h3>
+          <span>del caos al control</span>
+        </div>
+
+        <div class="chips">
+          <span class="chip">Planificación de proyectos</span>
+          <span class="chip">Coordinación de eventos</span>
+          <span class="chip">Tableros & reporting</span>
+          <span class="chip">Reuniones eficientes</span>
+        </div>
+
+        <ul class="services-list">
+          <li>
+            Diseñamos la estructura de tu proyecto (objetivos, hitos, responsables y riesgos) para que todo el mundo sepa qué hacer y cuándo.
+          </li>
+          <li>
+            Organizamos eventos internos o externos: agenda, proveedores, comunicación, checklists y plan de contingencia.
+          </li>
+          <li>
+            Creamos sistemas de seguimiento (Dashboards, Notion, Jira, Trello…) con informes periódicos claros y accionables.
+          </li>
+          <li>
+            Optimizamos reuniones: orden del día, tiempos, decisiones y actas con responsables y fechas límite.
+          </li>
+          <li>
+            Acompañamos en lanzamientos críticos con soporte en tiempo real para que nada se escape.
+          </li>
+        </ul>
+
+        <p class="services-note">
+          Podemos adaptarnos a tu stack actual o ayudarte a migrar a herramientas más eficientes.  
+          <strong>Nos integramos en tu equipo como si fuéramos internos.</strong>
+        </p>
+      </section>
+
+      <section class="contact" id="contacto">
+        <div class="section-title">
+          <h3>Cuéntanos qué necesitas</h3>
+          <span>respuesta en menos de 24h</span>
+        </div>
+
+        <form id="contactForm">
+          <div class="form-row">
+            <div>
+              <label for="nombre">Nombre</label>
+              <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
+            </div>
+            <div>
+              <label for="email">Correo</label>
+              <input type="email" id="email" name="email" placeholder="tu@empresa.com" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div>
+              <label for="tipo">Tipo de proyecto</label>
+              <select id="tipo" name="tipo" required>
+                <option value="">Selecciona una opción</option>
+                <option value="evento">Evento / Lanzamiento</option>
+                <option value="proyecto">Proyecto interno</option>
+                <option value="operaciones">Operaciones continuas</option>
+                <option value="otro">Otro</option>
+              </select>
+            </div>
+            <div>
+              <label for="equipo">Tamaño del equipo</label>
+              <input type="text" id="equipo" name="equipo" placeholder="p.ej. 5-20 personas" />
+            </div>
+          </div>
+
+          <div>
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos fechas, objetivos y el tipo de ayuda que necesitas." required></textarea>
+          </div>
+
+          <div class="form-footer">
+            <small>
+              No compartimos tu información con terceros. Solo la usamos para responder a tu consulta.
+            </small>
+            <button type="submit" class="btn-submit">
+              Enviar mensaje
+            </button>
+          </div>
+          <div id="formStatus" class="status"></div>
+        </form>
+      </section>
+    </section>
+
+    <footer>
+      <span>© <span id="year"></span> sudo su · Organización & Operaciones.</span>
+      <div class="footer-links">
+        <a href="#servicios">Servicios</a>
+        <a href="#equipo">Equipo</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Añade el año actual al footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Simula envío de formulario (sin backend)
+    const form = document.getElementById("contactForm");
+    const statusEl = document.getElementById("formStatus");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      statusEl.textContent = "";
+      statusEl.className = "status";
+
+      const nombre = form.nombre.value.trim();
+      const email = form.email.value.trim();
+      const tipo = form.tipo.value.trim();
+      const mensaje = form.mensaje.value.trim();
+
+      if (!nombre || !email || !tipo || !mensaje) {
+        statusEl.textContent = "Por favor, completa todos los campos obligatorios.";
+        statusEl.classList.add("error");
+        return;
+      }
+
+      // Aquí es donde enviarías los datos a tu backend con fetch/AJAX.
+      // Simulamos un envío correcto:
+      setTimeout(() => {
+        statusEl.textContent = "¡Gracias! Hemos recibido tu mensaje y te responderemos pronto.";
+        statusEl.classList.add("ok");
+        form.reset();
+      }, 400);
+    });
+  </script>
 </body>
 </html>
