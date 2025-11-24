@@ -1,241 +1,34 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>sudo su | Equipo de organización</title>
-  <meta name="description" content="sudo su - Equipo de organización y coordinación de eventos, proyectos y equipos." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./css/style.css">
-  <script src="./js/script.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar sesión - sudo su</title>
+  <link rel="stylesheet" href="./css/index.css">
 </head>
 <body>
-  <div class="page">
-    <header>
-      <div class="brand">
-        <div class="logo">{ }</div>
-        <div class="brand-text">
-          <h1>sudo su</h1>
-          <span>Equipo de organización & coordinación</span>
+  <div class="box">
+      <span class="borderLine"></span>
+      <form action="" name="form">
+        <h3>sudo su</h3>
+        <h2>Iniciar sesión</h2>
+        <div class="inputBox">
+          <input type="text" name="login" required>
+          <span>Usuario</span>
+          <i></i>
         </div>
-      </div>
-      <nav>
-        <a href="#servicios">Servicios</a>
-        <a href="#equipo">Equipo</a>
-        <a href="#contacto" class="primary">Contactar</a>
-      </nav>
-    </header>
-
-    <main>
-      <!-- HERO -->
-      <section class="hero">
-        <div class="hero-badge">
-          <span class="dot"></span>
-          Equipo operativo · Resolvemos caos con orden
+        <div class="inputBox">
+          <input type="password" name="password" required>
+          <span>Contraseña</span>
+          <i></i>
         </div>
-        <h2>
-          Organización <span class="highlight">precisa</span> para equipos que no pueden fallar.
-        </h2>
-        <p class="sub">
-          En <strong>sudo su</strong> planificamos, coordinamos y ejecutamos proyectos, eventos y operaciones para que tu equipo pueda centrarse en lo importante.
-        </p>
-
-        <div class="hero-tags">
-          <span>#gestión_de_proyectos</span>
-          <span>#eventos</span>
-          <span>#operaciones</span>
-          <span>#comunicación</span>
+        <div class="links">
+          <a href="#">Se me ha olvidado la contraseña</a>
+          <a href="#">Registrarse</a>
         </div>
-
-        <div class="hero-actions">
-          <a href="#contacto" class="btn btn-primary">
-            Reservar una reunión
-          </a>
-          <a href="#servicios" class="btn btn-ghost">
-            Ver qué podemos hacer
-          </a>
-        </div>
-
-        <div class="hero-meta">
-          <div>
-            <strong>+30</strong> proyectos gestionados
-          </div>
-          <div>
-            <strong>24/7</strong> soporte en lanzamientos clave
-          </div>
-          <div>
-            SLA de <strong>respuesta &lt; 2h</strong>
-          </div>
-        </div>
-      </section>
-
-      <!-- SIDE COLUMN -->
-      <aside class="side-column">
-        <section class="card">
-          <div class="card-header">
-            <h3>Instantánea del equipo</h3>
-            <span>sudo su · ops</span>
-          </div>
-          <div class="metrics">
-            <div class="metric">
-              <div class="metric-label">Tiempo medio de respuesta</div>
-              <div class="metric-value">1h 32m</div>
-              <div class="metric-tag">soporte operativo</div>
-            </div>
-            <div class="metric">
-              <div class="metric-label">Proyectos activos</div>
-              <div class="metric-value">7</div>
-              <div class="metric-tag">multidisciplinar</div>
-            </div>
-            <div class="metric">
-              <div class="metric-label">Satisfacción</div>
-              <div class="metric-value">4.9/5</div>
-              <div class="metric-tag">feedback del equipo</div>
-            </div>
-          </div>
-        </section>
-
-        <section class="card" id="equipo">
-          <div class="card-header">
-            <h3>Núcleo del equipo</h3>
-            <span>personas, no solo procesos</span>
-          </div>
-          <div class="team">
-            <div class="member">
-              <div class="member-avatar">LC</div>
-              <div class="member-info">
-                <strong>Líder de coordinación</strong>
-                <span>Visión global y priorización.</span>
-              </div>
-              <span class="member-tag">coord general</span>
-            </div>
-
-            <div class="member">
-              <div class="member-avatar">LO</div>
-              <div class="member-info">
-                <strong>Lead de operaciones</strong>
-                <span>Logística, tiempos y recursos.</span>
-              </div>
-              <span class="member-tag">operaciones</span>
-            </div>
-
-            <div class="member">
-              <div class="member-avatar">CC</div>
-              <div class="member-info">
-                <strong>Comms & stakeholders</strong>
-                <span>Comunicación clara y seguimiento.</span>
-              </div>
-              <span class="member-tag">comunicación</span>
-            </div>
-          </div>
-        </section>
-      </aside>
-    </main>
-
-    <!-- BOTTOM -->
-    <section class="bottom">
-      <section class="services" id="servicios">
-        <div class="section-title">
-          <h3>Qué hace sudo su por tu equipo</h3>
-          <span>del caos al control</span>
-        </div>
-
-        <div class="chips">
-          <span class="chip">Planificación de proyectos</span>
-          <span class="chip">Coordinación de eventos</span>
-          <span class="chip">Tableros & reporting</span>
-          <span class="chip">Reuniones eficientes</span>
-        </div>
-
-        <ul class="services-list">
-          <li>
-            Diseñamos la estructura de tu proyecto (objetivos, hitos, responsables y riesgos) para que todo el mundo sepa qué hacer y cuándo.
-          </li>
-          <li>
-            Organizamos eventos internos o externos: agenda, proveedores, comunicación, checklists y plan de contingencia.
-          </li>
-          <li>
-            Creamos sistemas de seguimiento (Dashboards, Notion, Jira, Trello…) con informes periódicos claros y accionables.
-          </li>
-          <li>
-            Optimizamos reuniones: orden del día, tiempos, decisiones y actas con responsables y fechas límite.
-          </li>
-          <li>
-            Acompañamos en lanzamientos críticos con soporte en tiempo real para que nada se escape.
-          </li>
-        </ul>
-
-        <p class="services-note">
-          Podemos adaptarnos a tu stack actual o ayudarte a migrar a herramientas más eficientes.  
-          <strong>Nos integramos en tu equipo como si fuéramos internos.</strong>
-        </p>
-      </section>
-
-      <section class="contact" id="contacto">
-        <div class="section-title">
-          <h3>Cuéntanos qué necesitas</h3>
-          <span>respuesta en menos de 24h</span>
-        </div>
-
-        <form id="contactForm">
-          <div class="form-row">
-            <div>
-              <label for="nombre">Nombre</label>
-              <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
-            </div>
-            <div>
-              <label for="email">Correo</label>
-              <input type="email" id="email" name="email" placeholder="tu@empresa.com" required />
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div>
-              <label for="tipo">Tipo de proyecto</label>
-              <select id="tipo" name="tipo" required>
-                <option value="">Selecciona una opción</option>
-                <option value="evento">Evento / Lanzamiento</option>
-                <option value="proyecto">Proyecto interno</option>
-                <option value="operaciones">Operaciones continuas</option>
-                <option value="otro">Otro</option>
-              </select>
-            </div>
-            <div>
-              <label for="equipo">Tamaño del equipo</label>
-              <input type="text" id="equipo" name="equipo" placeholder="p.ej. 5-20 personas" />
-            </div>
-          </div>
-
-          <div>
-            <label for="mensaje">Mensaje</label>
-            <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos fechas, objetivos y el tipo de ayuda que necesitas." required></textarea>
-          </div>
-
-          <div class="form-footer">
-            <small>
-              No compartimos tu información con terceros. Solo la usamos para responder a tu consulta.
-            </small>
-            <button type="submit" class="btn-submit">
-              Enviar mensaje
-            </button>
-          </div>
-          <div id="formStatus" class="status"></div>
-        </form>
-      </section>
-    </section>
-
-    <footer>
-      <span>© <span id="year"></span> sudo su · Organización & Operaciones.</span>
-      <div class="footer-links">
-        <a href="#servicios">Servicios</a>
-        <a href="#equipo">Equipo</a>
-        <a href="#contacto">Contacto</a>
-      </div>
-    </footer>
+        <input type="submit" id="submit" value="Iniciar sesión">
+      </form>
   </div>
-
-
+  <script src="./js/scriptLogin.js"></script>
 </body>
 </html>
