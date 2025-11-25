@@ -3,10 +3,19 @@ function go() {
         document.form.password.value === "admin" &&
         document.form.login.value === "admin"
     ) {
-        // Redirect to inicio.html
         window.location.href = "./inicio.html";
     } else {
-        alert("Error: usuario o contraseña incorrectos.");
+        // Change element ID to show the notification
+        const el = document.getElementById("ocultarNotificacion");
+        if (el) {
+            el.id = "mostrarNotificacion"; // rename the ID
+        }
+
+        // Update all <p> elements with the error message
+        const paragraphs = document.querySelectorAll("p");
+        paragraphs.forEach(p => {
+            p.textContent = "Error: usuario o contraseña incorrectos"; // set error message
+        });
     }
 }
 
