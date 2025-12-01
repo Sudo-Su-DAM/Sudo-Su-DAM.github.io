@@ -21,18 +21,20 @@ body::before {
     position: fixed;
     inset: 0;
     background: #23252a url("../images/imagensudosu.png") center/cover no-repeat;
-    filter: blur(8px);
+    filter: blur(0.5vw);
     transform: scale(1.1);
 }
 
 .box {
     position: relative;
-    width: 380px;
-    height: 450px;
+    width: 90%;
+    max-width: 380px;
+    height: auto;
+    min-height: 450px;
     background: #1c1c1c;
-    border-radius: 8px;
+    border-radius: 0.5rem;
     overflow: hidden;
-    padding: 10px;
+    padding: 2.5%;
 }
 
 .box::before{
@@ -40,8 +42,8 @@ body::before {
     position: absolute;
     top: -50%;
     left: -50%;
-    width: 380px;
-    height: 420px;
+    width: 100%;
+    height: 93%;
     background: linear-gradient(0deg, transparent, transparent, #ffffff, #ffffff, #ffffff);
     z-index: 1;
     transform-origin: bottom right;
@@ -53,8 +55,8 @@ body::before {
     position: absolute;
     top: -50%;
     left: -50%;
-    width: 380px;
-    height: 420px;
+    width: 100%;
+    height: 93%;
     background: linear-gradient(0deg, transparent, transparent, #1cec5b, #1cec5b, #1cec5b);
     z-index: 1;
     transform-origin: bottom right;
@@ -67,8 +69,8 @@ body::before {
     position: absolute;
     top: -50%;
     left: -50%;
-    width: 380px;
-    height: 420px;
+    width: 100%;
+    height: 93%;
     background: linear-gradient(0deg, transparent, transparent, #ffffff, #ffffff, #ffffff);
     z-index: 1;
     transform-origin: bottom right;
@@ -82,8 +84,8 @@ body::before {
     position: absolute;
     top: -50%;
     left: -50%;
-    width: 380px;
-    height: 420px;
+    width: 100%;
+    height: 93%;
     background: linear-gradient(0deg, transparent, transparent, #1cec5b, #1cec5b, #1cec5b);
     z-index: 1;
     transform-origin: bottom right;
@@ -104,10 +106,10 @@ body::before {
 
 .box form{
     position: absolute;
-    inset: 4px;
+    inset: 1%;
     background-color:#181818;
-    padding: 50px 40px;
-    border-radius: 8px;
+    padding: 12% 10%;
+    border-radius: 0.5rem;
     z-index: 2;
     display: flex;
     flex-direction: column;
@@ -129,18 +131,18 @@ body::before {
 
 .box form .inputBox{
     position: relative;
-    width: 300px;
-    margin-top: 35px;
+    width: 100%;
+    margin-top: 8%;
 }
 
 #registro{
-    margin-top: 10px;
+    margin-top: 2.5%;
 }
 
 .box form .inputBox input{
     position: relative;
     width: 100%;
-    padding: 20px 10px 10px;
+    padding: 5% 2.5% 2.5%;
     background: transparent;
     outline: none;
     border: none;
@@ -155,7 +157,7 @@ body::before {
 .box form .inputBox span{
     position: absolute;
     left: 0;
-    padding: 20px 0px 10px;
+    padding: 5% 0% 2.5%;
     pointer-events: none;
     color: #8f8f8f;
     font-size: 1em;
@@ -167,7 +169,7 @@ body::before {
 .box form .inputBox input:focus ~ span {
     color: #fff;
     font-size: 0.75em;
-    transform: translateY((-34px));
+    transform: translateY(-34px);
 }
 
 .box form .inputBox i{
@@ -194,7 +196,7 @@ body::before {
 }
 
 .box form .links a{
-    margin: 10px 0;
+    margin: 2.5% 0;
     font-size: 0.75em;
     color: #8f8f8f;
     text-decoration: none;
@@ -208,17 +210,17 @@ body::before {
 #submit, #submitregistro{
     border: none;
     outline: none;
-    padding: 9px 25px;
+    padding: 2.5% 6.5%;
     cursor: pointer;
     font-size: 0.9em;
     border-radius: 4px;
     font-weight: 600;
-    width: 150px;
-    margin-top: 10px;
+    width: 40%;
+    margin-top: 2.5%;
 }
 
 #submitregistro{
-    margin-top: 25px;
+    margin-top: 6%;
 }
 #submit:hover{
     background-color: #1cec5b;
@@ -229,8 +231,8 @@ body::before {
 }
 
 #ocultarNotificacion, #mostrarNotificacion{
-    font-size: 13px;
-    padding-top: 12px;
+    font-size: 0.8em;
+    padding-top: 3%;
 }
 #ocultarNotificacion{
     color: #ffffff00;
@@ -238,4 +240,35 @@ body::before {
 
 #mostrarNotificacion{
     color: #e61313;
+}
+
+/* Media queries para pantallas pequeñas */
+@media (max-width: 768px) {
+    .box {
+        width: 95%;
+        min-height: 400px;
+    }
+    
+    .box form {
+        padding: 10% 8%;
+    }
+    
+    #submit, #submitregistro {
+        width: 50%;
+    }
+}
+
+/* Media queries para pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .box {
+        width: 98%;
+    }
+    
+    .box form {
+        padding: 8% 6%;
+    }
+    
+    #submit, #submitregistro {
+        width: 60%;
+    }
 }
