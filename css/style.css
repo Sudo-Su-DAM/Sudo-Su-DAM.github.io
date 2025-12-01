@@ -12,7 +12,7 @@ body{
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: #23252a url("../imagenes/imagensudosu.png");
+    background: #23252a url("../images/imagensudosu.png");
     background-position: center;
 }
 
@@ -20,7 +20,7 @@ body::before {
     content: "";
     position: fixed;
     inset: 0;
-    background: #23252a url("../imagenes/imagensudosu.png") center/cover no-repeat;
+    background: #23252a url("../images/imagensudosu.png") center/cover no-repeat;
     filter: blur(8px);
     transform: scale(1.1);
 }
@@ -133,6 +133,10 @@ body::before {
     margin-top: 35px;
 }
 
+#registro{
+    margin-top: 10px;
+}
+
 .box form .inputBox input{
     position: relative;
     width: 100%;
@@ -201,7 +205,7 @@ body::before {
     color: #fff;
 }
 
-#submit{
+#submit, #submitregistro{
     border: none;
     outline: none;
     padding: 9px 25px;
@@ -213,10 +217,25 @@ body::before {
     margin-top: 10px;
 }
 
+#submitregistro{
+    margin-top: 25px;
+}
 #submit:hover{
     background-color: #1cec5b;
 }
 
 #submit:active{
     opacity: 0.6;
+}
+
+#ocultarNotificacion, #mostrarNotificacion{
+    font-size: 13px;
+    padding-top: 12px;
+}
+#ocultarNotificacion{
+    color: #ffffff00;
+}
+
+#mostrarNotificacion{
+    color: #e61313;
 }
