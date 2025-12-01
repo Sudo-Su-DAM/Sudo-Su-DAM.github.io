@@ -1,35 +1,45 @@
+function mostrarError(msg) {
+    const el = document.getElementById("ocultarNotificacion");
+    if (el) el.id = "mostrarNotificacion";
+
+    const paragraphs = document.querySelectorAll("p");
+    paragraphs.forEach(p => {
+        p.textContent = msg;
+    });
+}
+
 function go() {
     const login = document.form.login.value;
     const pass = document.form.password.value;
     const rep = document.form.repeatPassword.value;
 
-    if (!login) {
-        // Show notification if login is empty
-        const el = document.getElementById("ocultarNotificacion");
-        if (el) {
-            el.id = "mostrarNotificacion";
-        }
-
-        const paragraphs = document.querySelectorAll("p");
-        paragraphs.forEach(p => {
-            p.textContent = "Error: el campo de login es obligatorio";
-        });
+    // All fields required
+    if (!login || !pass || !rep) {
+        mostrarError("Todos los campos son obligatorios");
         return;
     }
 
-    if (pass === rep) {
-        window.location.href = "../../inicio/";
-    } else {
-        const el = document.getElementById("ocultarNotificacion");
-        if (el) {
-            el.id = "mostrarNotificacion";
-        }
-
-        const paragraphs = document.querySelectorAll("p");
-        paragraphs.forEach(p => {
-            p.textContent = "Error: las contraseñas no coinciden";
-        });
+    // Username minimum 4 chars
+    if (login.length < 4) {
+        mostrarError("El usuario debe tener mínimo 4 caracteres");
+        return;
     }
+
+    // Password strength check
+    const passRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
+    if (!passRegex.test(pass)) {
+        mostrarError("La contraseña debe tener mínimo 8 caracteres, mayúscula, minúscula y símbolo");
+        return;
+    }
+
+    // Passwords match
+    if (pass !== rep) {
+        mostrarError("Las contraseñas no coinciden");
+        return;
+    }
+
+    // All correct → redirect
+    window.location.href = "../../inicio/";
 }
 
 document.getElementById("submitregistro").addEventListener("click", function (e) {
